@@ -1,0 +1,16 @@
+<h3>ユーザー登録</h3>
+  <%= form_for @user, url: users_new_path do |f| %>
+     <div class="field">
+       <%= f.email_field :email, placeholder: "メールアドレス" %>
+     </div>
+     <div class="field">
+       <%= f.password_field :password, placeholder: "パスワード" %>
+     </div>
+     <div class="actions">
+       <%= f.submit "登録" %>
+     </div>
+   <% end %>
+
+  <div class="login_link">
+    <p>アカウントをお持ちですか？ <%= link_to 'ログインする',sign_in_path %></p>
+  </div>

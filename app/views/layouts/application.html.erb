@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shop</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <header class="global_header">
+    <%= link_to 'SHOP', products_path %>
+    <%= link_to '商品登録', new_product_path %>
+    <%# <%= link_to 'プロフィール編集',edit_user_path %> %>
+  </header>
+    <%= yield %>
+    <% flash.each do |message_type, message| %>
+      <%= message %>
+    <% end %>
+  </body>
+</html>

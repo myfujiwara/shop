@@ -1,0 +1,11 @@
+<h3>プロフィール編集</h3>
+  <%= form_for (@user) do |form| %>
+    <div class="field">
+      <%= form.label :"名前" %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "登録" %>
+    </div>
+  <% end %>

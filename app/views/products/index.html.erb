@@ -1,0 +1,14 @@
+<% if @products.any? %>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.name %></td>
+      <td><%= product.text %></td>
+      <td><%= product.price %></td>
+      <td><%= user.id %></td>
+      <%= link_to '編集する', product_edit_path(@product.id) %>
+      <%= link_to '削除する',product_path(@product), method: :delete do %>
+    </tr>
+  <% end %>
+<% else %>
+  <p class empty = "商品はありません" </p>
+<% end %>
