@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      user_sign_in(user)
       flash[:success] = 'ユーザー登録しました'
       redirect_to sign_in_path and return
     else
@@ -25,12 +24,11 @@ class UsersController < ApplicationController
   end
 
   def sign_in_process
-    password_md5 = User.generate_password(user_params[:password])
-    user = User.find_by(email: user_params[:email], password: password_md5)
-
-    if user
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
       user_sign_in(user)
-      redirect_to products_path and return
+      flash[:success] = 'ログインしました'
+      redirect_to products_path
     else
       flash[:danger] = 'ログインに失敗しました'
       redirect_to sign_in_path

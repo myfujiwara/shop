@@ -13,10 +13,10 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.save
       flash[:success] =　'商品を登録しました'
-      redirect_to product_index_path
+      redirect_to products_path
     else
       flash.now[:danger] = '商品登録に失敗しました'
-      render :new
+      redirect_to new_product_path
     end
   end
 
@@ -29,10 +29,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.save
       flash[:success] =　'商品を編集しました'
-      redirect_to product_index_path
+      redirect_to products_path
     else
       flash.now[:danger] = '商品を編集できませんでした'
-      render :edit
+      redirect_to edit_product_path
     end
   end
 
