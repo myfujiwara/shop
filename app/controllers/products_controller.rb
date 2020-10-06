@@ -2,7 +2,6 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-    @user = User.where(product_id: @product.id)
   end
 
   def new
@@ -37,15 +36,13 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    if @product.user_id == current_user.id
-      @product.destroy
-    end
+    @product.destroy
     flash[:success] = "削除しました"
     redirect_to product_index_path
   end
 
   private
   def product_params
-    params.require(:product).permit(:name, :describe, :price, :id).merge(:user_id: current_user.id)
+    params.require(:product).permit(:name, :describe, :price).merge(user_id: current_user.id)
   end
 end
